@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package test;
+
+// 定义下面的选项，表示生成service服务类和rpc方法描述，默认不生成
+option cc_generic_services = true;
+
+message ResultCode{
+    int32 errcode = 1;
+    bytes errmsg = 2;
+}
+message LoginRequest{
+    bytes name = 1;
+    bytes pwd = 2;
+}
+
+message LoginResponse{
+    ResultCode result = 1;
+    bool success = 2;
+}
+
+message GetFriendListsRequest{
+    uint32 userid = 1;
+}
+
+message User
+{
+    bytes name = 1;
+    uint32 age = 2;
+    enum Sex
+    {
+        MAN = 0;
+        WOMAN = 1;
+    }
+    Sex sex = 3;
+}
+
+message GetFriendListsResponse
+{
+    ResultCode result = 1;
+    repeated User friend_list = 2;
+}
+
+// 描述rpc方法-service
+service UserServiceRpc{
+    rpc Login(LoginRequest) returns(LoginResponse);
+    rpc GetFriendLists(GetFriendListsRequest) returns(GetFriendListsResponse);
+}
+
