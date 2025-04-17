@@ -178,6 +178,54 @@ krpcapplication.cc.s:
 	cd /home/kai/Desktop/krpc/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/krpc.dir/build.make src/CMakeFiles/krpc.dir/krpcapplication.cc.s
 .PHONY : krpcapplication.cc.s
 
+krpcconfig.o: krpcconfig.cc.o
+.PHONY : krpcconfig.o
+
+# target to build an object file
+krpcconfig.cc.o:
+	cd /home/kai/Desktop/krpc/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/krpc.dir/build.make src/CMakeFiles/krpc.dir/krpcconfig.cc.o
+.PHONY : krpcconfig.cc.o
+
+krpcconfig.i: krpcconfig.cc.i
+.PHONY : krpcconfig.i
+
+# target to preprocess a source file
+krpcconfig.cc.i:
+	cd /home/kai/Desktop/krpc/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/krpc.dir/build.make src/CMakeFiles/krpc.dir/krpcconfig.cc.i
+.PHONY : krpcconfig.cc.i
+
+krpcconfig.s: krpcconfig.cc.s
+.PHONY : krpcconfig.s
+
+# target to generate assembly for a file
+krpcconfig.cc.s:
+	cd /home/kai/Desktop/krpc/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/krpc.dir/build.make src/CMakeFiles/krpc.dir/krpcconfig.cc.s
+.PHONY : krpcconfig.cc.s
+
+krpcheader.pb.o: krpcheader.pb.cc.o
+.PHONY : krpcheader.pb.o
+
+# target to build an object file
+krpcheader.pb.cc.o:
+	cd /home/kai/Desktop/krpc/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/krpc.dir/build.make src/CMakeFiles/krpc.dir/krpcheader.pb.cc.o
+.PHONY : krpcheader.pb.cc.o
+
+krpcheader.pb.i: krpcheader.pb.cc.i
+.PHONY : krpcheader.pb.i
+
+# target to preprocess a source file
+krpcheader.pb.cc.i:
+	cd /home/kai/Desktop/krpc/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/krpc.dir/build.make src/CMakeFiles/krpc.dir/krpcheader.pb.cc.i
+.PHONY : krpcheader.pb.cc.i
+
+krpcheader.pb.s: krpcheader.pb.cc.s
+.PHONY : krpcheader.pb.s
+
+# target to generate assembly for a file
+krpcheader.pb.cc.s:
+	cd /home/kai/Desktop/krpc/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/krpc.dir/build.make src/CMakeFiles/krpc.dir/krpcheader.pb.cc.s
+.PHONY : krpcheader.pb.cc.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -193,6 +241,12 @@ help:
 	@echo "... krpcapplication.o"
 	@echo "... krpcapplication.i"
 	@echo "... krpcapplication.s"
+	@echo "... krpcconfig.o"
+	@echo "... krpcconfig.i"
+	@echo "... krpcconfig.s"
+	@echo "... krpcheader.pb.o"
+	@echo "... krpcheader.pb.i"
+	@echo "... krpcheader.pb.s"
 .PHONY : help
 
 

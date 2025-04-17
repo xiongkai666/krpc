@@ -3,6 +3,10 @@ file(REMOVE_RECURSE
   "CMakeFiles/krpc.dir/kprcprovider.cc.o.d"
   "CMakeFiles/krpc.dir/krpcapplication.cc.o"
   "CMakeFiles/krpc.dir/krpcapplication.cc.o.d"
+  "CMakeFiles/krpc.dir/krpcconfig.cc.o"
+  "CMakeFiles/krpc.dir/krpcconfig.cc.o.d"
+  "CMakeFiles/krpc.dir/krpcheader.pb.cc.o"
+  "CMakeFiles/krpc.dir/krpcheader.pb.cc.o.d"
   "libkrpc.a"
   "libkrpc.pdb"
 )

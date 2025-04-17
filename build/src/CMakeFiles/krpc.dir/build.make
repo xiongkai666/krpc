@@ -97,19 +97,51 @@ src/CMakeFiles/krpc.dir/krpcapplication.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/krpc.dir/krpcapplication.cc.s"
 	cd /home/kai/Desktop/krpc/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kai/Desktop/krpc/src/krpcapplication.cc -o CMakeFiles/krpc.dir/krpcapplication.cc.s
 
+src/CMakeFiles/krpc.dir/krpcconfig.cc.o: src/CMakeFiles/krpc.dir/flags.make
+src/CMakeFiles/krpc.dir/krpcconfig.cc.o: ../src/krpcconfig.cc
+src/CMakeFiles/krpc.dir/krpcconfig.cc.o: src/CMakeFiles/krpc.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kai/Desktop/krpc/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/CMakeFiles/krpc.dir/krpcconfig.cc.o"
+	cd /home/kai/Desktop/krpc/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/krpc.dir/krpcconfig.cc.o -MF CMakeFiles/krpc.dir/krpcconfig.cc.o.d -o CMakeFiles/krpc.dir/krpcconfig.cc.o -c /home/kai/Desktop/krpc/src/krpcconfig.cc
+
+src/CMakeFiles/krpc.dir/krpcconfig.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/krpc.dir/krpcconfig.cc.i"
+	cd /home/kai/Desktop/krpc/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kai/Desktop/krpc/src/krpcconfig.cc > CMakeFiles/krpc.dir/krpcconfig.cc.i
+
+src/CMakeFiles/krpc.dir/krpcconfig.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/krpc.dir/krpcconfig.cc.s"
+	cd /home/kai/Desktop/krpc/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kai/Desktop/krpc/src/krpcconfig.cc -o CMakeFiles/krpc.dir/krpcconfig.cc.s
+
+src/CMakeFiles/krpc.dir/krpcheader.pb.cc.o: src/CMakeFiles/krpc.dir/flags.make
+src/CMakeFiles/krpc.dir/krpcheader.pb.cc.o: ../src/krpcheader.pb.cc
+src/CMakeFiles/krpc.dir/krpcheader.pb.cc.o: src/CMakeFiles/krpc.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kai/Desktop/krpc/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object src/CMakeFiles/krpc.dir/krpcheader.pb.cc.o"
+	cd /home/kai/Desktop/krpc/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/krpc.dir/krpcheader.pb.cc.o -MF CMakeFiles/krpc.dir/krpcheader.pb.cc.o.d -o CMakeFiles/krpc.dir/krpcheader.pb.cc.o -c /home/kai/Desktop/krpc/src/krpcheader.pb.cc
+
+src/CMakeFiles/krpc.dir/krpcheader.pb.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/krpc.dir/krpcheader.pb.cc.i"
+	cd /home/kai/Desktop/krpc/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kai/Desktop/krpc/src/krpcheader.pb.cc > CMakeFiles/krpc.dir/krpcheader.pb.cc.i
+
+src/CMakeFiles/krpc.dir/krpcheader.pb.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/krpc.dir/krpcheader.pb.cc.s"
+	cd /home/kai/Desktop/krpc/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kai/Desktop/krpc/src/krpcheader.pb.cc -o CMakeFiles/krpc.dir/krpcheader.pb.cc.s
+
 # Object files for target krpc
 krpc_OBJECTS = \
 "CMakeFiles/krpc.dir/kprcprovider.cc.o" \
-"CMakeFiles/krpc.dir/krpcapplication.cc.o"
+"CMakeFiles/krpc.dir/krpcapplication.cc.o" \
+"CMakeFiles/krpc.dir/krpcconfig.cc.o" \
+"CMakeFiles/krpc.dir/krpcheader.pb.cc.o"
 
 # External object files for target krpc
 krpc_EXTERNAL_OBJECTS =
 
 src/libkrpc.a: src/CMakeFiles/krpc.dir/kprcprovider.cc.o
 src/libkrpc.a: src/CMakeFiles/krpc.dir/krpcapplication.cc.o
+src/libkrpc.a: src/CMakeFiles/krpc.dir/krpcconfig.cc.o
+src/libkrpc.a: src/CMakeFiles/krpc.dir/krpcheader.pb.cc.o
 src/libkrpc.a: src/CMakeFiles/krpc.dir/build.make
 src/libkrpc.a: src/CMakeFiles/krpc.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/kai/Desktop/krpc/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libkrpc.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/kai/Desktop/krpc/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library libkrpc.a"
 	cd /home/kai/Desktop/krpc/build/src && $(CMAKE_COMMAND) -P CMakeFiles/krpc.dir/cmake_clean_target.cmake
 	cd /home/kai/Desktop/krpc/build/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/krpc.dir/link.txt --verbose=$(VERBOSE)
 

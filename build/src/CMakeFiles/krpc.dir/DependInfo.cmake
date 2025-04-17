@@ -10,6 +10,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/kai/Desktop/krpc/src/kprcprovider.cc" "src/CMakeFiles/krpc.dir/kprcprovider.cc.o" "gcc" "src/CMakeFiles/krpc.dir/kprcprovider.cc.o.d"
   "/home/kai/Desktop/krpc/src/krpcapplication.cc" "src/CMakeFiles/krpc.dir/krpcapplication.cc.o" "gcc" "src/CMakeFiles/krpc.dir/krpcapplication.cc.o.d"
+  "/home/kai/Desktop/krpc/src/krpcconfig.cc" "src/CMakeFiles/krpc.dir/krpcconfig.cc.o" "gcc" "src/CMakeFiles/krpc.dir/krpcconfig.cc.o.d"
+  "/home/kai/Desktop/krpc/src/krpcheader.pb.cc" "src/CMakeFiles/krpc.dir/krpcheader.pb.cc.o" "gcc" "src/CMakeFiles/krpc.dir/krpcheader.pb.cc.o.d"
   )
 
 # Targets to which this target links.

@@ -129,12 +129,12 @@ src/clean: src/CMakeFiles/krpc.dir/clean
 src/CMakeFiles/krpc.dir/all:
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/krpc.dir/build.make src/CMakeFiles/krpc.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/krpc.dir/build.make src/CMakeFiles/krpc.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kai/Desktop/krpc/build/CMakeFiles --progress-num=1,2,3 "Built target krpc"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kai/Desktop/krpc/build/CMakeFiles --progress-num=1,2,3,4,5 "Built target krpc"
 .PHONY : src/CMakeFiles/krpc.dir/all
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/krpc.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kai/Desktop/krpc/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kai/Desktop/krpc/build/CMakeFiles 5
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/krpc.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kai/Desktop/krpc/build/CMakeFiles 0
 .PHONY : src/CMakeFiles/krpc.dir/rule
@@ -155,12 +155,12 @@ src/CMakeFiles/krpc.dir/clean:
 example/callee/CMakeFiles/provider.dir/all: src/CMakeFiles/krpc.dir/all
 	$(MAKE) $(MAKESILENT) -f example/callee/CMakeFiles/provider.dir/build.make example/callee/CMakeFiles/provider.dir/depend
 	$(MAKE) $(MAKESILENT) -f example/callee/CMakeFiles/provider.dir/build.make example/callee/CMakeFiles/provider.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kai/Desktop/krpc/build/CMakeFiles --progress-num=4,5,6 "Built target provider"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/kai/Desktop/krpc/build/CMakeFiles --progress-num=6,7,8 "Built target provider"
 .PHONY : example/callee/CMakeFiles/provider.dir/all
 
 # Build rule for subdir invocation for target.
 example/callee/CMakeFiles/provider.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/kai/Desktop/krpc/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/kai/Desktop/krpc/build/CMakeFiles 8
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 example/callee/CMakeFiles/provider.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/kai/Desktop/krpc/build/CMakeFiles 0
 .PHONY : example/callee/CMakeFiles/provider.dir/rule
