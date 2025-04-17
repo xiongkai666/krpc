@@ -178,6 +178,30 @@ krpcapplication.cc.s:
 	cd /home/kai/Desktop/krpc/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/krpc.dir/build.make src/CMakeFiles/krpc.dir/krpcapplication.cc.s
 .PHONY : krpcapplication.cc.s
 
+krpcchannel.o: krpcchannel.cc.o
+.PHONY : krpcchannel.o
+
+# target to build an object file
+krpcchannel.cc.o:
+	cd /home/kai/Desktop/krpc/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/krpc.dir/build.make src/CMakeFiles/krpc.dir/krpcchannel.cc.o
+.PHONY : krpcchannel.cc.o
+
+krpcchannel.i: krpcchannel.cc.i
+.PHONY : krpcchannel.i
+
+# target to preprocess a source file
+krpcchannel.cc.i:
+	cd /home/kai/Desktop/krpc/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/krpc.dir/build.make src/CMakeFiles/krpc.dir/krpcchannel.cc.i
+.PHONY : krpcchannel.cc.i
+
+krpcchannel.s: krpcchannel.cc.s
+.PHONY : krpcchannel.s
+
+# target to generate assembly for a file
+krpcchannel.cc.s:
+	cd /home/kai/Desktop/krpc/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/krpc.dir/build.make src/CMakeFiles/krpc.dir/krpcchannel.cc.s
+.PHONY : krpcchannel.cc.s
+
 krpcconfig.o: krpcconfig.cc.o
 .PHONY : krpcconfig.o
 
@@ -241,6 +265,9 @@ help:
 	@echo "... krpcapplication.o"
 	@echo "... krpcapplication.i"
 	@echo "... krpcapplication.s"
+	@echo "... krpcchannel.o"
+	@echo "... krpcchannel.i"
+	@echo "... krpcchannel.s"
 	@echo "... krpcconfig.o"
 	@echo "... krpcconfig.i"
 	@echo "... krpcconfig.s"

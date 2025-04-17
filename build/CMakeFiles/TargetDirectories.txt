@@ -8,3 +8,6 @@
 /home/kai/Desktop/krpc/build/example/callee/CMakeFiles/provider.dir
 /home/kai/Desktop/krpc/build/example/callee/CMakeFiles/edit_cache.dir
 /home/kai/Desktop/krpc/build/example/callee/CMakeFiles/rebuild_cache.dir
+/home/kai/Desktop/krpc/build/example/caller/CMakeFiles/consumer.dir
+/home/kai/Desktop/krpc/build/example/caller/CMakeFiles/edit_cache.dir
+/home/kai/Desktop/krpc/build/example/caller/CMakeFiles/rebuild_cache.dir

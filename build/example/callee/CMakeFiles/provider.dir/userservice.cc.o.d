@@ -281,9 +281,9 @@ example/callee/CMakeFiles/provider.dir/userservice.cc.o: \
  /usr/include/google/protobuf/message.h \
  /usr/include/google/protobuf/extension_set.h /usr/include/c++/11/cassert \
  /usr/include/google/protobuf/service.h \
- /home/kai/Desktop/krpc/src/include/krpcapplication.h \
- /home/kai/Desktop/krpc/src/include/krpcconfig.h \
- /home/kai/Desktop/krpc/src/include/krpcprovider.h \
+ /home/kai/Desktop/krpc/include/krpcapplication.h \
+ /home/kai/Desktop/krpc/include/krpcconfig.h \
+ /home/kai/Desktop/krpc/include/krpcprovider.h \
  /usr/include/muduo/net/EventLoop.h /usr/include/boost/any.hpp \
  /usr/include/boost/config.hpp /usr/include/boost/config/user.hpp \
  /usr/include/boost/config/detail/select_compiler_config.hpp \

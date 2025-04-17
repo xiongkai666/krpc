@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/kai/Desktop/krpc/src/include -I/home/kai/Desktop/krpc/example
+CXX_INCLUDES = -I/home/kai/Desktop/krpc/include -I/home/kai/Desktop/krpc/example
 
 CXX_FLAGS = -g
 

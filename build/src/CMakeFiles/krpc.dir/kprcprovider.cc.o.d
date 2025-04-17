@@ -1,8 +1,7 @@
 src/CMakeFiles/krpc.dir/kprcprovider.cc.o: \
  /home/kai/Desktop/krpc/src/kprcprovider.cc /usr/include/stdc-predef.h \
- /home/kai/Desktop/krpc/src/include/krpcapplication.h \
- /home/kai/Desktop/krpc/src/include/krpcconfig.h \
- /usr/include/c++/11/string \
+ /home/kai/Desktop/krpc/include/krpcapplication.h \
+ /home/kai/Desktop/krpc/include/krpcconfig.h /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -286,7 +285,7 @@ src/CMakeFiles/krpc.dir/kprcprovider.cc.o: \
  /usr/include/google/protobuf/stubs/stl_util.h \
  /usr/include/google/protobuf/message.h \
  /usr/include/google/protobuf/extension_set.h /usr/include/c++/11/cassert \
- /home/kai/Desktop/krpc/src/include/krpcprovider.h \
+ /home/kai/Desktop/krpc/include/krpcprovider.h \
  /usr/include/google/protobuf/service.h \
  /usr/include/muduo/net/EventLoop.h /usr/include/boost/any.hpp \
  /usr/include/boost/config.hpp /usr/include/boost/config/user.hpp \
