@@ -1,9 +1,9 @@
 
 # 忽略 build 目录及其下的所有内容
-build/*
+/build
 
 # 不忽略名为 README.md 的文件
 !README.md
 
 # 忽略所有 IDE 相关的配置文件
-.vscode
+/.vscode
