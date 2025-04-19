@@ -8,7 +8,6 @@
 #include <unistd.h>
 #include <errno.h>
 #include "krpcapplication.h"
-//#include "krpccontroller.h"
 //#include "zookeeperutil.h"
 
 /*
@@ -19,7 +18,7 @@ void KrpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
                                 google::protobuf::RpcController* controller, 
                                 const google::protobuf::Message* request,
                                 google::protobuf::Message* response,
-                                google::protobuf:: Closure* done)
+                                google::protobuf::Closure* done)
 {   
     const google::protobuf::ServiceDescriptor* sd = method->service();
     std::string service_name = sd->name(); // service_name
@@ -64,11 +63,11 @@ void KrpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
 
     // 打印调试信息
     std::cout << "============================================" << std::endl;
-    std::cout << "header_size: " << header_size << std::endl; 
-    std::cout << "rpc_header_str: " << rpc_header_str << std::endl; 
-    std::cout << "service_name: " << service_name << std::endl; 
-    std::cout << "method_name: " << method_name << std::endl; 
-    std::cout << "args_str: " << args_str << std::endl; 
+    std::cout << "KrpcChannel::header_size: " << header_size << std::endl;
+    std::cout << "KrpcChannel::rpc_header_str: " << rpc_header_str << std::endl;
+    std::cout << "KrpcChannel::service_name: " << service_name << std::endl;
+    std::cout << "KrpcChannel::method_name: " << method_name << std::endl;
+    std::cout << "KrpcChannel::args_str: " << args_str.c_str() << std::endl;
     std::cout << "============================================" << std::endl;
 
     // 使用tcp编程，完成rpc方法的远程调用
@@ -84,6 +83,7 @@ void KrpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
     //读取配置文件rpcserver的信息
     std::string ip = KrpcApplication::GetInstance().GetConfig().Load("rpcserverip");
     uint16_t port = atoi(KrpcApplication::GetInstance().GetConfig().Load("rpcserverport").c_str());
+
     /*
     //rpc调用方想调用service_name的method_name服务，需要查询zk上该服务所在的host信息
     ZkClient zkCli;
@@ -152,7 +152,6 @@ void KrpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
         controller->SetFailed(errtxt);
         return;
     }
-
     close(clientfd);
 
 }

@@ -1,5 +1,7 @@
 #pragma once
+#include "krpcchannel.h"
 #include "krpcconfig.h"
+#include "krpccontroller.h"
 
 //krpc 框架的基础类,单例模式
 class KrpcApplication{

@@ -27,6 +27,7 @@ int main(){
 
     return 0;
 }
+/*
 int main1(){
     test::LoginRequest req;
     req.set_name("zhang san");
@@ -46,3 +47,4 @@ int main1(){
 
     return 0;
 }
+*/
