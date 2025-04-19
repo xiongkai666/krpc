@@ -2,25 +2,6 @@
 #include <string>
 #include "lockqueue.h"
 
-// 定义宏 LOG_INFO("xxx %d %s", 20, "xxxx")
-#define LOG_INFO(logmsgformat, ...)                     \
-    do {                                                \
-        Logger& logger = Logger::GetInstance();         \
-        logger.SetLogLevel(INFO);                       \
-        char c[1024] = {0};                             \
-        snprintf(c, 1024, logmsgformat, ##__VA_ARGS__); \
-        logger.writeLog(c);                             \
-    } while (0)
-
-#define LOG_ERR(logmsgformat, ...)                      \
-    do {                                                \
-        Logger& logger = Logger::GetInstance();         \
-        logger.SetLogLevel(ERROR);                      \
-        char c[1024] = {0};                             \
-        snprintf(c, 1024, logmsgformat, ##__VA_ARGS__); \
-        logger.writeLog(c);                             \
-    } while (0)
-
 // 定义日志级别
 enum LogLevel {
     INFO,   // 普通信息
@@ -45,3 +26,22 @@ class Logger {
     Logger(const Logger&) = delete;
     Logger(Logger&&) = delete;
 };
+
+// 定义宏 LOG_INFO("xxx %d %s", 20, "xxxx")
+#define LOG_INFO(logmsgformat, ...)                     \
+    do {                                                \
+        Logger& logger = Logger::GetInstance();         \
+        logger.SetLogLevel(INFO);                       \
+        char c[1024] = {0};                             \
+        snprintf(c, 1024, logmsgformat, ##__VA_ARGS__); \
+        logger.writeLog(c);                             \
+    } while (0)
+
+#define LOG_ERR(logmsgformat, ...)                      \
+    do {                                                \
+        Logger& logger = Logger::GetInstance();         \
+        logger.SetLogLevel(ERROR);                      \
+        char c[1024] = {0};                             \
+        snprintf(c, 1024, logmsgformat, ##__VA_ARGS__); \
+        logger.writeLog(c);                             \
+    } while (0)
