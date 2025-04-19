@@ -1,9 +1,8 @@
-#include "krpcapplication.h"
-#include "krpcconfig.h"
-#include <google/protobuf/descriptor.h>
-#include <functional>
-#include "krpcheader.pb.h"
 #include "krpcprovider.h"
+#include "krpcapplication.h"
+#include "krpcheader.pb.h"
+#include "logger.h"
+#include "zookeeperutil.h"
 
 void KrpcProvider::NotifyService(google::protobuf::Service* service){
     ServiceInfo service_info;
@@ -11,14 +10,14 @@ void KrpcProvider::NotifyService(google::protobuf::Service* service){
     const google::protobuf::ServiceDescriptor *pserviceDesc = service->GetDescriptor();
 
     std::string service_name = pserviceDesc->name();
-    std::cout << "service_name:" << service_name << std::endl;
+    LOG_INFO("service_name:%s", service_name.c_str());
 
     int methodCnt = pserviceDesc->method_count();
     
     for(int i = 0; i < methodCnt; ++i){
         const google::protobuf::MethodDescriptor *pmethodDesc = pserviceDesc->method(i);
         std::string method_name = pmethodDesc->name();
-        std::cout << "method_name:" << method_name << std::endl;
+        LOG_INFO("method_name:%s", method_name.c_str());
 
         service_info.m_methodMap.emplace(method_name, pmethodDesc);
     }
@@ -39,6 +38,25 @@ void KrpcProvider::Run(){
     server.setMessageCallback(std::bind(&KrpcProvider::OnMessage, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
 
     server.setThreadNum(4);
+
+    // 把当前rpc节点上要发布的服务全部注册到zk上面，让rpc client可以从zk上发现服务
+    // session timeout：30s，1/3 * timeout 时间发送ping消息
+    ZkClient zkCli;
+    zkCli.Start();
+    // service_name为永久性节点，method_name为临时性节点
+    for (auto& sp : m_serviceMap) {
+        // /service_name   /UserServiceRpc
+        std::string service_path = "/" + sp.first;
+        zkCli.Create(service_path.c_str(), nullptr, 0);
+        for (auto& mp : sp.second.m_methodMap) {
+            // /service_name/method_name   /UserServiceRpc/Login 存储当前这个rpc服务节点主机的ip和port
+            std::string method_path = service_path + "/" + mp.first;
+            char method_path_data[128] = {0};
+            sprintf(method_path_data, "%s:%d", ip.c_str(), port);
+            // ZOO_EPHEMERAL表示znode是一个临时性节点
+            zkCli.Create(method_path.c_str(), method_path_data, strlen(method_path_data), ZOO_EPHEMERAL);
+        }
+    }
 
     std::cout << "RpcProvider start service at ip:" << ip << " port:" << port << std::endl;
 

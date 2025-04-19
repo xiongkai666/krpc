@@ -8,7 +8,7 @@
 #include <unistd.h>
 #include <errno.h>
 #include "krpcapplication.h"
-//#include "zookeeperutil.h"
+#include "zookeeperutil.h"
 
 /*
 双方定义的数据类型：header_size + service_name method_name args_size + args
@@ -79,16 +79,17 @@ void KrpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
         controller->SetFailed(errtxt);
         return;
     }
-
-    //读取配置文件rpcserver的信息
+    
+    /*
+    //使用zookeeper前，需要读取配置文件rpcserver的信息
     std::string ip = KrpcApplication::GetInstance().GetConfig().Load("rpcserverip");
     uint16_t port = atoi(KrpcApplication::GetInstance().GetConfig().Load("rpcserverport").c_str());
+    */
 
-    /*
     //rpc调用方想调用service_name的method_name服务，需要查询zk上该服务所在的host信息
     ZkClient zkCli;
     zkCli.Start();
-    //  /UserServiceRpc/Login
+    // 具体结点：/UserServiceRpc/Login
     std::string method_path = "/" + service_name + "/" + method_name;
     // 127.0.0.1:8000
     std::string host_data = zkCli.GetData(method_path.c_str());
@@ -105,7 +106,7 @@ void KrpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
     }
     std::string ip = host_data.substr(0, idx);
     uint16_t port = atoi(host_data.substr(idx+1, host_data.size()-idx).c_str());
-    */
+    
     struct sockaddr_in server_addr;
     server_addr.sin_family = AF_INET;
     server_addr.sin_port = htons(port);

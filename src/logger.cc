@@ -9,13 +9,14 @@ Logger& Logger::GetInstance() {
 }
 
 Logger::Logger() {
-    // 启动专门的写日志线程
+    //创建日志文件夹
     if (!std::filesystem::exists("log")) {
         if (!std::filesystem::create_directory("log")) {
             std::cout << "Failed to create log directory!" << std::endl;
             exit(EXIT_FAILURE);
         }
     }
+    // 启动专门的写日志线程
     std::thread writeLogTask([&]() {
         for (;;) {
             // 获取当前的日期，然后取日志信息，写入相应的日志文件当中 a+
