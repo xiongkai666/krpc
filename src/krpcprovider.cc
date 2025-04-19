@@ -161,5 +161,5 @@ void KrpcProvider::SendRpcResponse(const muduo::net::TcpConnectionPtr& conn, goo
     else{
         std::cout << "serialize response_str error!" << std::endl; 
     }
-    conn->shutdown(); // 模拟http的短链接服务，由rpcprovider主动断开连接
+    //conn->shutdown(); // 模拟http的短链接服务，由rpcprovider主动断开连接
 }

@@ -134,7 +134,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_user_2eproto::offsets[] PROTOB
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::user::LoginResponse, result_),
-  PROTOBUF_FIELD_OFFSET(::user::LoginResponse, sucess_),
+  PROTOBUF_FIELD_OFFSET(::user::LoginResponse, success_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::user::RegisterRequest, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -149,7 +149,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_user_2eproto::offsets[] PROTOB
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::user::RegisterResponse, result_),
-  PROTOBUF_FIELD_OFFSET(::user::RegisterResponse, sucess_),
+  PROTOBUF_FIELD_OFFSET(::user::RegisterResponse, success_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::user::ResultCode)},
@@ -170,16 +170,16 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 const char descriptor_table_protodef_user_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\nuser.proto\022\004user\"-\n\nResultCode\022\017\n\007errc"
   "ode\030\001 \001(\005\022\016\n\006errmsg\030\002 \001(\014\")\n\014LoginReques"
-  "t\022\014\n\004name\030\001 \001(\014\022\013\n\003pwd\030\002 \001(\014\"A\n\rLoginRes"
+  "t\022\014\n\004name\030\001 \001(\014\022\013\n\003pwd\030\002 \001(\014\"B\n\rLoginRes"
   "ponse\022 \n\006result\030\001 \001(\0132\020.user.ResultCode\022"
-  "\016\n\006sucess\030\002 \001(\010\"8\n\017RegisterRequest\022\n\n\002id"
-  "\030\001 \001(\r\022\014\n\004name\030\002 \001(\014\022\013\n\003pwd\030\003 \001(\014\"D\n\020Reg"
-  "isterResponse\022 \n\006result\030\001 \001(\0132\020.user.Res"
-  "ultCode\022\016\n\006sucess\030\002 \001(\0102}\n\016UserServiceRp"
-  "c\0220\n\005Login\022\022.user.LoginRequest\032\023.user.Lo"
-  "ginResponse\0229\n\010Register\022\025.user.RegisterR"
-  "equest\032\026.user.RegisterResponseB\003\200\001\001b\006pro"
-  "to3"
+  "\017\n\007success\030\002 \001(\010\"8\n\017RegisterRequest\022\n\n\002i"
+  "d\030\001 \001(\r\022\014\n\004name\030\002 \001(\014\022\013\n\003pwd\030\003 \001(\014\"E\n\020Re"
+  "gisterResponse\022 \n\006result\030\001 \001(\0132\020.user.Re"
+  "sultCode\022\017\n\007success\030\002 \001(\0102}\n\016UserService"
+  "Rpc\0220\n\005Login\022\022.user.LoginRequest\032\023.user."
+  "LoginResponse\0229\n\010Register\022\025.user.Registe"
+  "rRequest\032\026.user.RegisterResponseB\003\200\001\001b\006p"
+  "roto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_user_2eproto_deps[1] = {
 };
@@ -192,7 +192,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_use
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_user_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_user_2eproto = {
-  false, false, descriptor_table_protodef_user_2eproto, "user.proto", 443,
+  false, false, descriptor_table_protodef_user_2eproto, "user.proto", 445,
   &descriptor_table_user_2eproto_once, descriptor_table_user_2eproto_sccs, descriptor_table_user_2eproto_deps, 5, 0,
   schemas, file_default_instances, TableStruct_user_2eproto::offsets,
   file_level_metadata_user_2eproto, 5, file_level_enum_descriptors_user_2eproto, file_level_service_descriptors_user_2eproto,
@@ -699,15 +699,15 @@ LoginResponse::LoginResponse(const LoginResponse& from)
   } else {
     result_ = nullptr;
   }
-  sucess_ = from.sucess_;
+  success_ = from.success_;
   // @@protoc_insertion_point(copy_constructor:user.LoginResponse)
 }
 
 void LoginResponse::SharedCtor() {
   ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_LoginResponse_user_2eproto.base);
   ::memset(&result_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&sucess_) -
-      reinterpret_cast<char*>(&result_)) + sizeof(sucess_));
+      reinterpret_cast<char*>(&success_) -
+      reinterpret_cast<char*>(&result_)) + sizeof(success_));
 }
 
 LoginResponse::~LoginResponse() {
@@ -746,7 +746,7 @@ void LoginResponse::Clear() {
     delete result_;
   }
   result_ = nullptr;
-  sucess_ = false;
+  success_ = false;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -765,10 +765,10 @@ const char* LoginResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // bool sucess = 2;
+      // bool success = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          sucess_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          success_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -808,10 +808,10 @@ failure:
         1, _Internal::result(this), target, stream);
   }
 
-  // bool sucess = 2;
-  if (this->sucess() != 0) {
+  // bool success = 2;
+  if (this->success() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(2, this->_internal_sucess(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(2, this->_internal_success(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -837,8 +837,8 @@ size_t LoginResponse::ByteSizeLong() const {
         *result_);
   }
 
-  // bool sucess = 2;
-  if (this->sucess() != 0) {
+  // bool success = 2;
+  if (this->success() != 0) {
     total_size += 1 + 1;
   }
 
@@ -876,8 +876,8 @@ void LoginResponse::MergeFrom(const LoginResponse& from) {
   if (from.has_result()) {
     _internal_mutable_result()->::user::ResultCode::MergeFrom(from._internal_result());
   }
-  if (from.sucess() != 0) {
-    _internal_set_sucess(from._internal_sucess());
+  if (from.success() != 0) {
+    _internal_set_success(from._internal_success());
   }
 }
 
@@ -903,8 +903,8 @@ void LoginResponse::InternalSwap(LoginResponse* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(LoginResponse, sucess_)
-      + sizeof(LoginResponse::sucess_)
+      PROTOBUF_FIELD_OFFSET(LoginResponse, success_)
+      + sizeof(LoginResponse::success_)
       - PROTOBUF_FIELD_OFFSET(LoginResponse, result_)>(
           reinterpret_cast<char*>(&result_),
           reinterpret_cast<char*>(&other->result_));
@@ -1208,15 +1208,15 @@ RegisterResponse::RegisterResponse(const RegisterResponse& from)
   } else {
     result_ = nullptr;
   }
-  sucess_ = from.sucess_;
+  success_ = from.success_;
   // @@protoc_insertion_point(copy_constructor:user.RegisterResponse)
 }
 
 void RegisterResponse::SharedCtor() {
   ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_RegisterResponse_user_2eproto.base);
   ::memset(&result_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&sucess_) -
-      reinterpret_cast<char*>(&result_)) + sizeof(sucess_));
+      reinterpret_cast<char*>(&success_) -
+      reinterpret_cast<char*>(&result_)) + sizeof(success_));
 }
 
 RegisterResponse::~RegisterResponse() {
@@ -1255,7 +1255,7 @@ void RegisterResponse::Clear() {
     delete result_;
   }
   result_ = nullptr;
-  sucess_ = false;
+  success_ = false;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1274,10 +1274,10 @@ const char* RegisterResponse::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPA
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // bool sucess = 2;
+      // bool success = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
-          sucess_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          success_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -1317,10 +1317,10 @@ failure:
         1, _Internal::result(this), target, stream);
   }
 
-  // bool sucess = 2;
-  if (this->sucess() != 0) {
+  // bool success = 2;
+  if (this->success() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(2, this->_internal_sucess(), target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(2, this->_internal_success(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1346,8 +1346,8 @@ size_t RegisterResponse::ByteSizeLong() const {
         *result_);
   }
 
-  // bool sucess = 2;
-  if (this->sucess() != 0) {
+  // bool success = 2;
+  if (this->success() != 0) {
     total_size += 1 + 1;
   }
 
@@ -1385,8 +1385,8 @@ void RegisterResponse::MergeFrom(const RegisterResponse& from) {
   if (from.has_result()) {
     _internal_mutable_result()->::user::ResultCode::MergeFrom(from._internal_result());
   }
-  if (from.sucess() != 0) {
-    _internal_set_sucess(from._internal_sucess());
+  if (from.success() != 0) {
+    _internal_set_success(from._internal_success());
   }
 }
 
@@ -1412,8 +1412,8 @@ void RegisterResponse::InternalSwap(RegisterResponse* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(RegisterResponse, sucess_)
-      + sizeof(RegisterResponse::sucess_)
+      PROTOBUF_FIELD_OFFSET(RegisterResponse, success_)
+      + sizeof(RegisterResponse::success_)
       - PROTOBUF_FIELD_OFFSET(RegisterResponse, result_)>(
           reinterpret_cast<char*>(&result_),
           reinterpret_cast<char*>(&other->result_));

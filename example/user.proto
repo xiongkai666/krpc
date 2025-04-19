@@ -19,7 +19,7 @@ message LoginRequest
 message LoginResponse
 {
     ResultCode result = 1;
-    bool sucess = 2;
+    bool success = 2;
 }
 
 message RegisterRequest
@@ -32,7 +32,7 @@ message RegisterRequest
 message RegisterResponse
 {
     ResultCode result = 1;
-    bool sucess = 2;
+    bool success = 2;
 }
 
 service UserServiceRpc
