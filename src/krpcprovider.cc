@@ -52,7 +52,7 @@ void KrpcProvider::Run(){
             // /service_name/method_name   /UserServiceRpc/Login 存储当前这个rpc服务节点主机的ip和port
             std::string method_path = service_path + "/" + mp.first;
             char method_path_data[128] = {0};
-            sprintf(method_path_data, "%s:%d", ip.c_str(), port);
+            snprintf(method_path_data, sizeof(method_path_data), "%s:%d", ip.c_str(), port);
             // ZOO_EPHEMERAL表示znode是一个临时性节点
             zkCli.Create(method_path.c_str(), method_path_data, strlen(method_path_data), ZOO_EPHEMERAL);
         }

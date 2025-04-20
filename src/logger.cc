@@ -24,7 +24,7 @@ Logger::Logger() {
             tm* nowtm = localtime(&now);
 
             char file_name[128];
-            sprintf(file_name, "log/%d-%d-%d-log.txt", nowtm->tm_year + 1900, nowtm->tm_mon + 1, nowtm->tm_mday);
+            snprintf(file_name, sizeof(file_name), "log/%d-%d-%d-log.txt", nowtm->tm_year + 1900, nowtm->tm_mon + 1, nowtm->tm_mday);
 
             FILE* pf = fopen(file_name, "a+");
             if (pf == nullptr) {
@@ -35,7 +35,7 @@ Logger::Logger() {
             std::string msg = m_lckQue.Pop();
 
             char time_buf[128] = {0};
-            sprintf(time_buf, "%d:%d:%d =>[%s] ",
+            snprintf(time_buf, sizeof(time_buf), "%d:%d:%d =>[%s] ",
                     nowtm->tm_hour,
                     nowtm->tm_min,
                     nowtm->tm_sec,

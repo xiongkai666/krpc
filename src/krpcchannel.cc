@@ -75,7 +75,7 @@ void KrpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
     if (-1 == clientfd)
     {
         char errtxt[512] = {0};
-        sprintf(errtxt, "create socket error! errno:%d", errno);
+        snprintf(errtxt, sizeof(errtxt), "create socket error! errno:%d", errno);
         controller->SetFailed(errtxt);
         return;
     }
@@ -116,8 +116,8 @@ void KrpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
     if (-1 == connect(clientfd, (struct sockaddr*)&server_addr, sizeof(server_addr)))
     {
         close(clientfd);
-        char errtxt[512] = {0};
-        sprintf(errtxt, "connect error! errno:%d", errno);
+        char errtxt[1024] = {0};
+        snprintf(errtxt, sizeof(errtxt), "connect error! errno:%d", errno);
         controller->SetFailed(errtxt);
         return;
     }
@@ -126,8 +126,8 @@ void KrpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
     if (-1 == send(clientfd, send_rpc_str.c_str(), send_rpc_str.size(), 0))
     {
         close(clientfd);
-        char errtxt[512] = {0};
-        sprintf(errtxt, "send error! errno:%d", errno);
+        char errtxt[1024] = {0};
+        snprintf(errtxt, sizeof(errtxt), "send error! errno:%d", errno);
         controller->SetFailed(errtxt);
         return;
     }
@@ -138,8 +138,8 @@ void KrpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
     if (-1 == (recv_size = recv(clientfd, recv_buf, 1024, 0)))
     {
         close(clientfd);
-        char errtxt[512] = {0};
-        sprintf(errtxt, "recv error! errno:%d", errno);
+        char errtxt[1024] = {0};
+        snprintf(errtxt, sizeof(errtxt), "recv error! errno:%d", errno);
         controller->SetFailed(errtxt);
         return;
     }
@@ -148,8 +148,8 @@ void KrpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
     if (!response->ParseFromArray(recv_buf, recv_size))
     {
         close(clientfd);
-        char errtxt[512] = {0};
-        sprintf(errtxt, "parse error! response_str:%s", recv_buf);
+        char errtxt[1024] = {0};
+        snprintf(errtxt, sizeof(errtxt), "parse error! response_str:%s", recv_buf);
         controller->SetFailed(errtxt);
         return;
     }
