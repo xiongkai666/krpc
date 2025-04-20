@@ -52,18 +52,9 @@ void KrpcChannel::CallMethod(const google::protobuf::MethodDescriptor* method,
     send_rpc_str += rpc_header_str;                               // rpcheader
     send_rpc_str += args_str;                                     // args
 
-    // 打印调试信息
-    std::cout << "============================================" << std::endl;
-    std::cout << "KrpcChannel::header_size: " << header_size << std::endl;
-    std::cout << "KrpcChannel::rpc_header_str: " << rpc_header_str << std::endl;
-    std::cout << "KrpcChannel::service_name: " << service_name << std::endl;
-    std::cout << "KrpcChannel::method_name: " << method_name << std::endl;
-    std::cout << "KrpcChannel::args_str: " << args_str.c_str() << std::endl;
-    std::cout << "============================================" << std::endl;
-
     // 使用连接池获取连接
-    ZkClient zkCli;
-    zkCli.Start();
+    ZkClient& zkCli = ZkClient::GetInstance();
+    zkCli.Start();  // 确保连接已建立
     std::string method_path = "/" + service_name + "/" + method_name;
     std::string host_data = zkCli.GetData(method_path.c_str());
     if (host_data.empty()) {

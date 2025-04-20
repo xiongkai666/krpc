@@ -1,12 +1,24 @@
 #include "zookeeperutil.h"
-#include "krpcapplication.h"
 #include <semaphore.h>
+#include <chrono>
+#include <thread>
 #include <iostream>
+#include "krpcapplication.h"
+// 4.20
+ZkClient ZkClient::instance;
+ZkClient& ZkClient::GetInstance() {
+    return instance;
+}
 
 // 全局的watcher观察器，zkserver给zkclient的通知
 void global_watcher(zhandle_t *zh, int type,
                    int state, const char *path, void *watcherCtx)
 {
+    if (state == ZOO_EXPIRED_SESSION_STATE) {
+        std::cout << "Session expired, attempting to reconnect..." << std::endl;
+        ZkClient& zkCli = ZkClient::GetInstance();
+        zkCli.Reconnect();
+    }
     if (type == ZOO_SESSION_EVENT)  // 回调的消息类型是和会话相关的消息类型
 	{
 		if (state == ZOO_CONNECTED_STATE)  // zkclient和zkserver连接成功
@@ -17,48 +29,57 @@ void global_watcher(zhandle_t *zh, int type,
 	}
 }
 
-ZkClient::ZkClient() : m_zhandle(nullptr)
-{
-}
-
 ZkClient::~ZkClient()
 {
+    std::lock_guard<std::mutex> lock(m_mutex);
     if (m_zhandle != nullptr)
     {
         zookeeper_close(m_zhandle); // 关闭句柄，释放资源
+        m_zhandle = nullptr;
     }
 }
 
-// 连接zkserver
-void ZkClient::Start()
-{
+// 连接
+void ZkClient::Start() {
+    std::lock_guard<std::mutex> lock(m_mutex);
+
+    if (m_zhandle)
+        return;  // 已连接直接返回
+
+    // 获取配置信息
     std::string host = KrpcApplication::GetInstance().GetConfig().Load("zookeeperip");
     std::string port = KrpcApplication::GetInstance().GetConfig().Load("zookeeperport");
     std::string connstr = host + ":" + port;
-    
-	/*
-	zookeeper_mt：多线程版本
-	zookeeper的API客户端程序提供了三个线程
-	1. API调用线程 
-	2. 网络I/O线程  pthread_create  poll
-	3. watcher回调线程 pthread_create
-	*/
-    m_zhandle = zookeeper_init(connstr.c_str(), global_watcher, 30000, nullptr, nullptr, 0);
-    if (nullptr == m_zhandle) 
-    {
-        std::cout << "zookeeper_init error!" << std::endl;
+
+    // 初始化连接
+    m_zhandle = zookeeper_init(connstr.c_str(), global_watcher, 15000, nullptr, nullptr, 0);
+    if (!m_zhandle) {
+        std::cerr << "zookeeper_init failed!" << std::endl;
         exit(EXIT_FAILURE);
     }
 
+    // 设置调试参数
+    zoo_set_debug_level(ZOO_LOG_LEVEL_WARN);
+    zoo_deterministic_conn_order(true);
+
+    // 等待连接建立（带超时机制）
     sem_t sem;
     sem_init(&sem, 0, 0);
     zoo_set_context(m_zhandle, &sem);
 
-    sem_wait(&sem);
+    struct timespec ts;
+    clock_gettime(CLOCK_REALTIME, &ts);
+    ts.tv_sec += 5;  // 5秒超时
+    if (sem_timedwait(&sem, &ts) == -1) {
+        std::cerr << "Connect to ZooKeeper server timeout!" << std::endl;
+        exit(EXIT_FAILURE);
+    }
+    sem_destroy(&sem);
 }
 
 void ZkClient::Create(const char *path, const char *data, int datalen, int state)
 {
+    std::lock_guard<std::mutex> lock(m_mutex);
     char path_buffer[128];
     int bufferlen = sizeof(path_buffer);
     int flag;
@@ -85,16 +106,40 @@ void ZkClient::Create(const char *path, const char *data, int datalen, int state
 // 根据指定的path，获取znode节点的值
 std::string ZkClient::GetData(const char *path)
 {
+    std::lock_guard<std::mutex> lock(m_mutex);
     char buffer[64];
-	int bufferlen = sizeof(buffer);
-	int flag = zoo_get(m_zhandle, path, 0, buffer, &bufferlen, nullptr);
-	if (flag != ZOK)
-	{
-		std::cout << "get znode error... path:" << path << std::endl;
-		return "";
-	}
-	else
-	{
-		return buffer;
-	}
+    int bufferlen = sizeof(buffer);
+    for (int i = 0; i < 3; ++i) {
+        int flag = zoo_get(m_zhandle, path, 0, buffer, &bufferlen, nullptr);
+        if (flag == ZOK)
+            return buffer;
+        if (flag == ZINVALIDSTATE)
+            Reconnect();
+    }
+    return "";
+}
+
+//增强重连机制
+void ZkClient::Reconnect() {
+    std::lock_guard<std::mutex> lock(m_mutex);
+    if (m_zhandle) {
+        zookeeper_close(m_zhandle);
+        m_zhandle = nullptr;
+    }
+
+    // 指数退避重连
+    int retries = 0;
+    const int max_retries = 5;
+    while (retries++ < max_retries) {
+        try {
+            Start();
+            std::cout << "Reconnected successfully!" << std::endl;
+            return;
+        } catch (...) {
+            int delay = 1 << retries;  // 指数退避
+            std::this_thread::sleep_for(std::chrono::seconds(delay));
+        }
+    }
+    std::cerr << "Max reconnect attempts reached!" << std::endl;
+    exit(EXIT_FAILURE);
 }

@@ -41,8 +41,8 @@ void KrpcProvider::Run(){
 
     // 把当前rpc节点上要发布的服务全部注册到zk上面，让rpc client可以从zk上发现服务
     // session timeout：30s，1/3 * timeout 时间发送ping消息
-    ZkClient zkCli;
-    zkCli.Start();
+    ZkClient& zkCli = ZkClient::GetInstance();
+    zkCli.Start();  // 确保连接已建立
     // service_name为永久性节点，method_name为临时性节点
     for (auto& sp : m_serviceMap) {
         // /service_name   /UserServiceRpc
@@ -103,15 +103,6 @@ void KrpcProvider::OnMessage(const muduo::net::TcpConnectionPtr& conn, muduo::ne
 
     // 获取rpc方法参数的字符流数据
     std::string args_str = recv_buf.substr(4 + header_size, args_size);
-
-    // 打印调试信息
-    std::cout << "============================================" << std::endl;
-    std::cout << "KrpcProvider::header_size: " << header_size << std::endl;
-    std::cout << "KrpcProvider::rpc_header_str: " << rpc_header_str << std::endl;
-    std::cout << "KrpcProvider::service_name: " << service_name << std::endl;
-    std::cout << "KrpcProvider::method_name: " << method_name << std::endl;
-    std::cout << "KrpcProvider::args_str: " << args_str << std::endl;
-    std::cout << "============================================" << std::endl;
 
     // 获取service对象和method对象
     auto it = m_serviceMap.find(service_name);
