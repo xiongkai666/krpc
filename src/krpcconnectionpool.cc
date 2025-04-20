@@ -68,7 +68,7 @@ KrpcConnectionPool::~KrpcConnectionPool() {
     pthread_mutex_destroy(&_mutex);
 }
 
-// 创建新连接（私有方法实现）
+// 创建新连接
 int KrpcConnectionPool::CreateNewConnection() {
     int conn = socket(AF_INET, SOCK_STREAM, 0);
     if (conn == -1) {
